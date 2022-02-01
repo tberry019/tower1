@@ -136,8 +136,8 @@ export default {
       editable,
       async createTowerEvent() {
         try {
-          await towerEventService.createTowerEvent(editable.value)
-          router.push({ name: 'EventDetails' })
+          const newEvent = await towerEventService.createTowerEvent(editable.value)
+          router.push({ name: 'EventDetails', params: { id: newEvent.id } })
 
         }
         catch (error) {

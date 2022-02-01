@@ -1,9 +1,7 @@
 <template>
-  <!-- <router-link> -->
   <div class="row">
     <TowerEvents v-for="t in towerEvents" :key="t.id" :towerEvent="t" />
   </div>
-  <!-- </router-link> -->
 </template>
 
 <script>
@@ -12,10 +10,8 @@ import { towerEventService } from "../services/TowerEventService"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { AppState } from "../AppState"
-import TowerEvents from "../components/TowerEvents.vue"
 
 export default {
-  //components: { TowerEvents },
   name: 'Home',
 
   setup() {
