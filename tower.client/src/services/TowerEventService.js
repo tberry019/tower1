@@ -19,11 +19,11 @@ class TowerEventService {
     AppState.towerEvents.unshift(res.data)
   }
 
-  // async getTowerEventById(id) {
-  //   const res = await api.get('api/events/' + id)
-  //   logger.log('getting event by id', res.data)
-  //   AppState.towerEvents = res.data
-  // }
+  async getTowerEventById(id) {
+    const res = await api.get('api/events/' + id)
+    logger.log('getting event by id', res.data)
+    AppState.towerEvents = res.data
+  }
 }
 
 

@@ -1,6 +1,8 @@
 <template>
   <div class="col-3 p-5">
-    <router-link :to="{ name: 'EventDetails' }">
+    <router-link
+      :to="{ name: 'EventDetails', params: { id: towerEvent.creatorId } }"
+    >
       <div class="towerEventCard">
         <div class="card p-5 bg-white elevation-3 rounded">
           <img :src="towerEvent.coverImg" alt="Img" class="rounded-circle" />
