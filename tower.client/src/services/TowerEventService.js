@@ -41,9 +41,9 @@ class TowerEventService {
   }
 
   async createComment(newComment) {
-    const res = await api.post('api/comments/', newComment)
+    const res = await api.post('api/comments', newComment)
 
-    AppState.comments.unshift(res.data)
+    AppState.comments.push(res.data)
     logger.log('creating comment', res.data)
     return res.data
   }
@@ -56,9 +56,8 @@ class TowerEventService {
 
   async getEventComments(eventId) {
     const res = await api.get('api/events/' + eventId + '/comments')
-    AppState.comments = res.data
     logger.log('get comments res', res.data)
-
+    AppState.comments = res.data
   }
 
   async attendEvent(id) {

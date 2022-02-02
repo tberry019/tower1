@@ -172,6 +172,7 @@ export default {
       async createComment() {
         try {
           await towerEventService.createComment(editable.value)
+
         } catch (error) {
           Pop.toast(error.message, 'error')
           logger.log()
@@ -188,9 +189,9 @@ export default {
           logger.log(error.message)
         }
       },
-      async getCommentByEventTower() {
+      async getEventComments() {
         try {
-          await towerEventService.getEventComments()
+          await towerEventService.getEventComments(route.params.id)
         } catch (error) {
           Pop.toast(error.message, "error")
           logger.log(error.message)

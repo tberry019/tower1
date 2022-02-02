@@ -1,6 +1,6 @@
 <template>
   <div class="component">
-    {{ comment.body }}
+    <!-- {{ comment.body }} -->
   </div>
   <div class="card" style="width: 10rem">
     <img :src="comment.creator.picture" class="card-img-top" alt="..." />
@@ -51,7 +51,10 @@ export default {
           Pop.toast(error.message, "error")
           logger.log(error.message)
         }
+
       }
+
+
     }
   }
 }
