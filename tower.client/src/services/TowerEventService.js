@@ -48,10 +48,10 @@ class TowerEventService {
     return res.data
   }
 
-  async deleteComment(comment) {
-    const res = await api.delete('api/comments/' + comment._id)
+  async deleteComment(commentId) {
+    const res = await api.delete('api/comments/' + commentId)
     logger.log('removed comment')
-    AppState.comments = AppState.comments.filter(c => c.id !== id)
+    AppState.comments = AppState.comments.filter(c => c.id !== commentId)
   }
 
   async getEventComments(eventId) {
