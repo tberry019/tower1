@@ -72,9 +72,9 @@
               <p class="card-text">
                 {{ c.body }}
               </p>
-              <btn @click.prevent="deleteComment()" class="btn btn-danger"
-                >Delete</btn
-              >
+              <button @click.prevent="deleteComment()" class="btn btn-danger">
+                Delete
+              </button>
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@ import Comment from "../components/Comment.vue"
 export default {
 
   name: 'EventDetails',
-  setup() {
+  setup(props) {
     const editable = ref({})
     const route = useRoute()
     onMounted(async () => {
