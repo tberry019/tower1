@@ -112,15 +112,17 @@
       </div>
     </div>
   </div>
-
-  <Modal id="editTowerEvent">
-    <template #modal-title>
-      <h4>Edit Event</h4>
-    </template>
-    <template #modal-body>
-      <EditEventForm />
-    </template>
-  </Modal>
+  <div v-if="towerEvent.isCanceled == false">
+    <Modal id="editTowerEvent">
+      <div></div>
+      <template #modal-title>
+        <h4>Edit Event</h4>
+      </template>
+      <template #modal-body>
+        <EditEventForm />
+      </template>
+    </Modal>
+  </div>
 </template>
 
 <script>
@@ -135,8 +137,9 @@ export default {
 
   name: 'EventDetails',
   setup(props) {
-    const editable = ref({})
     const route = useRoute()
+    const editable = ref({ eventId: route.params.id })
+
     onMounted(async () => {
       try {
         await towerEventService.getTowerEventById(route.params.id)
@@ -171,6 +174,8 @@ export default {
       },
       async createComment() {
         try {
+          // object.key = value
+
           await towerEventService.createComment(editable.value)
 
         } catch (error) {
