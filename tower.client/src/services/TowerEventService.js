@@ -25,6 +25,7 @@ class TowerEventService {
     const res = await api.get('api/events/' + id)
     logger.log('getting event by id', res.data)
     AppState.towerEvent = res.data
+    console.log(res.data)
   }
 
   async editTowerEvent(updatedEvent) {
@@ -34,9 +35,9 @@ class TowerEventService {
   }
 
   async deleteTowerEvent(id) {
-    const res = await api.delete('api/events' + id)
+    const res = await api.delete('api/events/' + id)
     logger.log('canceled event')
-    AppState.towerEvents = AppState.towerEvents.filter(t => t.id !== id)
+    AppState.towerEvent = AppState.towerEvent.filter(t => t.id !== id)
   }
 
   async createComment(newComment) {
@@ -47,7 +48,7 @@ class TowerEventService {
   }
 
   async deleteComment(id) {
-    const res = await api.delete('api/comments' + id)
+    const res = await api.delete('api/comments/' + id)
     logger.log('removed comment')
     AppState.comments = AppState.comments.filter(c => c.id !== id)
   }
@@ -58,6 +59,22 @@ class TowerEventService {
     logger.log('get comments res', res.data)
 
   }
+
+  async attendEvent(id) {
+    const res = await api.post('api/attendees/', { eventId: id })
+    // logger.log('attending event', res.data)
+    AppState.attendees.unshift(res.data)
+    return res.data
+  }
+
+  async getEventAttendees(eventId) {
+    const res = await api.get('api/events/' + eventId + '/attendees')
+    logger.log('pullling attendees', res.data)
+    AppState.attendees = res.data
+
+  }
+
+
 }
 
 
