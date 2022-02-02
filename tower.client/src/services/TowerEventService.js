@@ -30,7 +30,7 @@ class TowerEventService {
 
   async editTowerEvent(updatedEvent) {
     const res = await api.put('api/events/' + updatedEvent.id, updatedEvent)
-    //  logger.log('editing tower event', res.data)
+    logger.log('editing tower event', res.data)
     AppState.towerEvents = new towerEvents
   }
 
@@ -48,9 +48,9 @@ class TowerEventService {
     return res.data
   }
 
-  async deleteComment(id) {
-    const res = await api.delete('api/comments/' + id)
-    //logger.log('removed comment')
+  async deleteComment(comment) {
+    const res = await api.delete('api/comments/' + comment._id)
+    logger.log('removed comment')
     AppState.comments = AppState.comments.filter(c => c.id !== id)
   }
 
