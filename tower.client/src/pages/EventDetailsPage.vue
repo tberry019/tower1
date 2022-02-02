@@ -64,7 +64,7 @@
             <img :src="a.account.picture" :title="a.account.name" />
           </div>
         </div>
-        <div class="card" style="width: 10rem">
+        <!-- <div class="card" style="width: 10rem">
           <div v-for="c in comments" :key="c.id">
             <img :src="c.creator.picture" class="card-img-top" alt="..." />
             <div class="card-body">
@@ -77,8 +77,8 @@
               </button>
             </div>
           </div>
-        </div>
-
+        </div> -->
+        <Comment v-for="c in comments" :key="c.id" :comment="c" />
         <form @submit.prevent="createComment">
           <div class="form-group mb-3">
             <label for="body"></label>
@@ -185,6 +185,14 @@ export default {
           }
         } catch (error) {
           Pop.toast(error.message, 'error')
+          logger.log(error.message)
+        }
+      },
+      async getCommentByEventTower() {
+        try {
+          await towerEventService.getEventComments()
+        } catch (error) {
+          Pop.toast(error.message, "error")
           logger.log(error.message)
         }
       },
