@@ -142,6 +142,7 @@ export default {
     return {
       towerEvents: computed(() => AppState.towerEvents),
       editable,
+
       async createTowerEvent() {
         try {
           const newEvent = await towerEventService.createTowerEvent(editable.value)

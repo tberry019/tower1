@@ -10,27 +10,27 @@ class TowerEventService {
     const res = await api.get('api/events')
     AppState.towerEvents = res.data
     AppState.filteredEvents = res.data
-    logger.log(res.data)
+    // logger.log(res.data)
 
   }
 
   async createTowerEvent(newTowerEvent) {
     const res = await api.post('api/events', newTowerEvent)
-    logger.log('creating a new towerEvent', res.data)
+    // logger.log('creating a new towerEvent', res.data)
     AppState.towerEvents.unshift(res.data)
     return res.data
   }
 
   async getTowerEventById(id) {
     const res = await api.get('api/events/' + id)
-    logger.log('getting event by id', res.data)
+    // logger.log('getting event by id', res.data)
     AppState.towerEvent = res.data
     console.log(res.data)
   }
 
   async editTowerEvent(updatedEvent) {
     const res = await api.put('api/events/' + updatedEvent.id, updatedEvent)
-    logger.log('editing tower event', res.data)
+    //  logger.log('editing tower event', res.data)
     AppState.towerEvents = new towerEvents
   }
 
@@ -41,15 +41,16 @@ class TowerEventService {
   }
 
   async createComment(newComment) {
-    const res = await api.post('api/comments', newComment)
-    logger.log('creating comment', res.data)
+    const res = await api.post('api/comments/', newComment)
+
     AppState.comments.unshift(res.data)
+    logger.log('creating comment', res.data)
     return res.data
   }
 
   async deleteComment(id) {
     const res = await api.delete('api/comments/' + id)
-    logger.log('removed comment')
+    //logger.log('removed comment')
     AppState.comments = AppState.comments.filter(c => c.id !== id)
   }
 
@@ -69,11 +70,16 @@ class TowerEventService {
 
   async getEventAttendees(eventId) {
     const res = await api.get('api/events/' + eventId + '/attendees')
-    logger.log('pullling attendees', res.data)
+    //logger.log('pullling attendees', res.data)
     AppState.attendees = res.data
 
   }
-
+  async getMyEvents() {
+    const res = await api.get('api/account/attendees')
+    //logger.log('pulling my events', res.data)
+    AppState.myEvents = res.data
+    logger.log(error)
+  }
 
 }
 

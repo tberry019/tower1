@@ -4,12 +4,14 @@
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
   </div>
-  <div class="col-8 py-3" v-for="p in towerEvents" :key="p.id"></div>
+  <EventCard v-for="t in towerEvents" :key="t.id" :towerEvent="t" />
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
+import { towerEventService } from "../services/TowerEventService"
+
 export default {
   props: {
     towerEvents: {
@@ -17,11 +19,13 @@ export default {
     }
   },
   name: 'Account',
-  setup(props) {
+  setup() {
+    onMounted(() => towerEventService.getMyEvents())
     return {
       account: computed(() => AppState.account),
-      towerEvents: computed(() => AppState.towerEvents)
+      myEvents: computed(() => AppState.myEvents)
     }
+
   }
 }
 </script>

@@ -28,7 +28,8 @@ export default {
       }
     })
     return {
-      towerEvent: computed(() => AppState.comments)
+      comments: computed(() => AppState.comments)
+
 
     }
   }
