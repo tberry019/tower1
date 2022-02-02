@@ -160,15 +160,15 @@ export default {
           Pop.toast(error.message, 'error')
         }
       },
-      async createComment() {
-        try {
-          const newComment = await towerEventService.createComment(editable.value)
-          router.push({ name: 'EventDetails', params: { id: newComment.id } })
+      // async createComment() {
+      //   try {
+      //     const newComment = await towerEventService.createComment(editable.value)
+      //     router.push({ name: 'EventDetails', params: { id: newComment.id } })
 
-        } catch (error) {
-          Pop.toast(error.message, 'error')
-        }
-      }
+      //   } catch (error) {
+      //     Pop.toast(error.message, 'error')
+      //   }
+      // }
     }
   }
 }
