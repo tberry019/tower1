@@ -57,7 +57,7 @@
           {{ c.creator.name }}
         </div>
 
-        <form @submit.prevent="editTowerEvent">
+        <!-- <form @submit.prevent="editTowerEvent">
           <div class="form-group">
             <label for="name">Name...</label>
             <input
@@ -174,7 +174,7 @@
               <b>Create</b>
             </button>
           </div>
-        </form>
+        </form> -->
 
         <form @submit.prevent="createComment">
           <div class="form-group mb-3">
