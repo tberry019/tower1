@@ -128,9 +128,17 @@ import { Modal, } from "bootstrap"
 import { useRouter } from "vue-router"
 import { AppState } from "../AppState"
 export default {
-  setup() {
+  props: {
+    towerEvents: {
+      type: Object
+    }
+  },
+  setup(props) {
     const editable = ref({})
     const router = useRouter()
+    watchEffect(() => {
+      editable.value = { ...props.towerEvents }
+    })
     return {
       towerEvents: computed(() => AppState.towerEvents),
       editable,
@@ -141,6 +149,23 @@ export default {
 
         }
         catch (error) {
+          Pop.toast(error.message, 'error')
+        }
+      },
+      async editTowerEvent() {
+        try {
+          if (editable.value.id)
+            await towerEventService.editTowerEvent(editable.value)
+        } catch (error) {
+          Pop.toast(error.message, 'error')
+        }
+      },
+      async createComment() {
+        try {
+          const newComment = await towerEventService.createComment(editable.value)
+          router.push({ name: 'EventDetails', params: { id: newComment.id } })
+
+        } catch (error) {
           Pop.toast(error.message, 'error')
         }
       }

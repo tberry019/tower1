@@ -5,11 +5,6 @@
   <main>
     <router-view />
   </main>
-  <!-- <footer>
-    <div class="bg-light text-dark text-center p-4">
-      Made with 💖 by Taylor Berry
-    </div>
-  </footer> -->
 </template>
 
 <script>

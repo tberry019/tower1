@@ -1,8 +1,6 @@
 <template>
-  <div class="col-3 p-5">
-    <router-link
-      :to="{ name: 'EventDetails', params: { id: towerEvent.creatorId } }"
-    >
+  <div class="col-lg-4 my-3">
+    <router-link :to="{ name: 'EventDetails', params: { id: towerEvent.id } }">
       <div class="towerEventCard">
         <div class="card p-5 bg-white elevation-3 rounded">
           <img :src="towerEvent.coverImg" alt="Img" class="rounded-circle" />
@@ -12,7 +10,9 @@
           <p>{{ towerEvent.startDate }}</p>
           <p>Seats Remaining: {{ towerEvent.capacity }}</p>
           <p>{{ towerEvent.location }}</p>
-          <p v-if="towerEvent.isCanceled == true">Event is <b>CANCELED</b></p>
+          <p class="text-danger" v-if="towerEvent.isCanceled == true">
+            Event is <b class="text-color: red">CANCELED</b>
+          </p>
           <b>
             <p v-if="towerEvent.capacity <= 0">THIS SHOW IS SOLD OUT!!</p>
           </b>
