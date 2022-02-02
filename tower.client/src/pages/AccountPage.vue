@@ -4,7 +4,7 @@
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
   </div>
-  <EventCard v-for="t in towerEvents" :key="t.id" :towerEvent="t" />
+  <EventCard v-for="t in myEvents" :key="t.id" :towerEvent="t" />
 </template>
 
 <script>

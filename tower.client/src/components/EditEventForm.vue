@@ -129,7 +129,7 @@ import { useRouter } from "vue-router"
 import { AppState } from "../AppState"
 export default {
   props: {
-    towerEvents: {
+    towerEvent: {
       type: Object
     }
   },
@@ -137,17 +137,15 @@ export default {
     const editable = ref({})
     const router = useRouter()
     watchEffect(() => {
-      editable.value = { ...props.towerEvents }
+      editable.value = { ...props.towerEvent }
     })
     return {
-      towerEvents: computed(() => AppState.towerEvents),
       editable,
 
 
       async editTowerEvent() {
         try {
-          if (editable.value.id)
-            await towerEventService.editTowerEvent(editable.value)
+          await towerEventService.editTowerEvent(editable.value)
         } catch (error) {
           Pop.toast(error.message, 'error')
         }

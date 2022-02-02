@@ -74,10 +74,10 @@ class TowerEventService {
 
   }
   async getMyEvents() {
-    const res = await api.get('api/account/attendees')
+    const res = await api.get('account/attendees')
     //logger.log('pulling my events', res.data)
-    AppState.myEvents = res.data
-    logger.log(error)
+    AppState.myEvents = res.data.map(d => d.event)
+    // logger.log(error)
   }
 
 }

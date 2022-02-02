@@ -40,15 +40,12 @@
             <p class="text-danger" v-if="towerEvent.isCanceled == true">
               Event is <b class="text-color: red">CANCELED</b>
             </p>
-            <b>
-              <p v-if="towerEvent.capacity <= 0">THIS SHOW IS SOLD OUT!!</p>
-            </b>
-            <div v-if="!attendee">
-              <div v-if="towerEvent.capacity > 0">
-                <button @click="attendEvent(eventId)" class="btn btn-primary">
-                  Attend Event
-                </button>
-              </div>
+            <p v-else-if="towerEvent.capacity <= 0">THIS SHOW IS SOLD OUT!!</p>
+
+            <div v-else-if="!attendee">
+              <button @click="attendEvent(eventId)" class="btn btn-primary">
+                Attend Event
+              </button>
             </div>
           </div>
           <div v-if="towerEvent.isCanceled == false">
@@ -114,12 +111,11 @@
   </div>
   <div v-if="towerEvent.isCanceled == false">
     <Modal id="editTowerEvent">
-      <div></div>
       <template #modal-title>
         <h4>Edit Event</h4>
       </template>
       <template #modal-body>
-        <EditEventForm />
+        <EditEventForm :towerEvent="towerEvent" />
       </template>
     </Modal>
   </div>
